@@ -4,8 +4,16 @@ import { Button } from "react-bootstrap";
 export const COLORS = ["red", "blue", "green"];
 const DEFAULT_COLOR_INDEX = 0;
 
-function ChangeColor(): React.JSX.Element {
-    const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
+interface ColorIndex {
+    setColorIndex: (newIndex: number) => void;
+    colorIndex: number;
+}
+
+function ChangeColor({
+    setColorIndex,
+    colorIndex,
+}: ColorIndex): React.JSX.Element {
+    // const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
     return (
         <Button
             onClick={() => {
@@ -17,14 +25,16 @@ function ChangeColor(): React.JSX.Element {
     );
 }
 
-function ColorPreview(): React.JSX.Element {
+function ColorPreview({ colorIndex }: ColorIndex): React.JSX.Element {
+    // setColorIndex(colorIndex);
     return (
         <div
             data-testid="colored-box"
             style={{
                 width: "50px",
                 height: "50px",
-                backgroundColor: COLORS[DEFAULT_COLOR_INDEX],
+                // DEFAULT_COLOR_INDEX
+                backgroundColor: COLORS[colorIndex],
                 display: "inline-block",
                 verticalAlign: "bottom",
                 marginLeft: "5px",
@@ -34,13 +44,22 @@ function ColorPreview(): React.JSX.Element {
 }
 
 export function ColoredBox(): React.JSX.Element {
+    const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
+
     return (
         <div>
             <h3>Colored Box</h3>
+            {/* DEFAULT_COLOR_INDEX */}
             <span>The current color is: {COLORS[DEFAULT_COLOR_INDEX]}</span>
             <div>
-                <ChangeColor></ChangeColor>
-                <ColorPreview></ColorPreview>
+                <ChangeColor
+                    setColorIndex={setColorIndex}
+                    colorIndex={colorIndex}
+                ></ChangeColor>
+                <ColorPreview
+                    setColorIndex={setColorIndex}
+                    colorIndex={colorIndex}
+                ></ColorPreview>
             </div>
         </div>
     );
