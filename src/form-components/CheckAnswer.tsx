@@ -17,7 +17,7 @@ export function CheckAnswer({
     // this is the View, where we display the textbox (FormGroup) and update the userAnswer State when user types.
     return (
         <div>
-            {/* <h3>Check Answer</h3> */}
+            <h3>Check Answer</h3>
             <FormGroup controlId="formUserAnswer">
                 <FormLabel>Input Answer Below:</FormLabel>
                 <FormControl
