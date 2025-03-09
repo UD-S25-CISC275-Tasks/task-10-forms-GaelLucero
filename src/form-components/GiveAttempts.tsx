@@ -13,9 +13,9 @@ export function GiveAttempts(): React.JSX.Element {
 
     function updateAttempsGained(event: React.ChangeEvent<HTMLInputElement>) {
         setAttemptsGained(
-            parseInt(event.target.value) >= 1 ?
+            parseInt(event.target.value) >= 0 ?
                 parseInt(event.target.value)
-            :   0,
+            :   attemptsGained,
         );
     }
 
